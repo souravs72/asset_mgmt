@@ -7,6 +7,9 @@ app_license = "mit"
 
 required_apps = ["erpnext", "hrms"]
 
+# App module folder name (must differ from app package name for sync_customizations)
+# See asset_mgmt/install.py sync_custom_fields for explicit custom field sync.
+
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
