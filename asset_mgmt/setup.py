@@ -4,11 +4,14 @@
 import frappe
 from frappe.utils import add_months, getdate, nowdate
 
-from asset_mgmt.settings import ensure_default_settings, get_settings
+from asset_mgmt.config import ensure_default_settings, get_settings
 
 
 def setup_asset_management():
 	"""Full Phase 1-4 demo setup driven by Asset Mgmt Settings."""
+	from asset_mgmt.install import sync_custom_fields
+
+	sync_custom_fields()
 	ensure_default_settings()
 	settings = get_settings()
 
