@@ -13,7 +13,7 @@ from asset_mgmt.setup import setup_asset_management
 
 def sync_custom_fields():
 	"""Sync Asset custom fields from the app custom folder."""
-	folder = os.path.join(frappe.get_app_path("asset_mgmt"), "asset_mgmt", "custom")
+	folder = os.path.join(frappe.get_app_path("asset_mgmt"), "custom")
 	if not os.path.exists(folder):
 		return
 
