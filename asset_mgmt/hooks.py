@@ -5,10 +5,7 @@ app_description = "ERPNext asset management customizations"
 app_email = "souravsingh2609@gmail.com"
 app_license = "mit"
 
-# Apps
-# ------------------
-
-# required_apps = []
+required_apps = ["erpnext", "hrms"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -83,7 +80,8 @@ app_license = "mit"
 # ------------
 
 # before_install = "asset_mgmt.install.before_install"
-# after_install = "asset_mgmt.install.after_install"
+after_install = "asset_mgmt.install.after_install"
+after_migrate = ["asset_mgmt.install.sync_custom_fields"]
 
 # Uninstallation
 # ------------

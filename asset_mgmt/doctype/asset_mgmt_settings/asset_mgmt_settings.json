@@ -1,0 +1,153 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-27 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "setup_section",
+  "enable_demo_setup",
+  "load_demo_data",
+  "column_break_setup",
+  "finalize_site_on_install",
+  "company_section",
+  "company_name",
+  "company_abbr",
+  "company_tagline",
+  "column_break_company",
+  "country",
+  "currency",
+  "chart_of_accounts",
+  "timezone",
+  "admin_section",
+  "admin_full_name",
+  "admin_email"
+ ],
+ "fields": [
+  {
+   "fieldname": "setup_section",
+   "fieldtype": "Section Break",
+   "label": "Setup"
+  },
+  {
+   "default": "1",
+   "description": "Run company, masters, and demo asset setup on install/migrate patch",
+   "fieldname": "enable_demo_setup",
+   "fieldtype": "Check",
+   "label": "Enable Demo Setup"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.enable_demo_setup",
+   "fieldname": "load_demo_data",
+   "fieldtype": "Check",
+   "label": "Load Demo Assets and Employees"
+  },
+  {
+   "fieldname": "column_break_setup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "finalize_site_on_install",
+   "fieldtype": "Check",
+   "label": "Finalize Site (Skip Setup Wizard)"
+  },
+  {
+   "fieldname": "company_section",
+   "fieldtype": "Section Break",
+   "label": "Company"
+  },
+  {
+   "default": "Asset Management",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name",
+   "reqd": 1
+  },
+  {
+   "default": "AM",
+   "fieldname": "company_abbr",
+   "fieldtype": "Data",
+   "label": "Company Abbreviation",
+   "reqd": 1
+  },
+  {
+   "default": "Asset Management",
+   "fieldname": "company_tagline",
+   "fieldtype": "Data",
+   "label": "Company Tagline"
+  },
+  {
+   "fieldname": "column_break_company",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "India",
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "default": "INR",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "default": "India - Chart of Accounts",
+   "fieldname": "chart_of_accounts",
+   "fieldtype": "Data",
+   "label": "Chart of Accounts Template"
+  },
+  {
+   "default": "Asia/Kolkata",
+   "fieldname": "timezone",
+   "fieldtype": "Data",
+   "label": "Timezone"
+  },
+  {
+   "fieldname": "admin_section",
+   "fieldtype": "Section Break",
+   "label": "Admin User"
+  },
+  {
+   "default": "Sourav Singh",
+   "fieldname": "admin_full_name",
+   "fieldtype": "Data",
+   "label": "Admin Full Name"
+  },
+  {
+   "default": "souravsingh2609@gmail.com",
+   "fieldname": "admin_email",
+   "fieldtype": "Data",
+   "label": "Admin Email",
+   "options": "Email"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-05-27 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Asset Mgmt",
+ "name": "Asset Mgmt Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

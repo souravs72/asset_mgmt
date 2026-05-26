@@ -1,0 +1,6 @@
+item_code,item_name,item_group,stock_uom,is_fixed_asset,is_stock_item,asset_category
+LAPTOP-001,Laptop,All Item Groups,Nos,1,0,IT Equipment
+MONITOR-001,Monitor,All Item Groups,Nos,1,0,IT Equipment
+DESK-001,Office Desk,All Item Groups,Nos,1,0,Office Furniture
+CHAIR-001,Office Chair,All Item Groups,Nos,1,0,Office Furniture
+VEHICLE-001,Company Vehicle,All Item Groups,Nos,1,0,Vehicles

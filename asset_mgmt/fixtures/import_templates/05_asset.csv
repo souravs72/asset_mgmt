@@ -1,0 +1,19 @@
+asset_name,item_code,asset_category,company,location,custodian,purchase_date,available_for_use_date,gross_purchase_amount,is_existing_asset,calculate_depreciation,opening_accumulated_depreciation,asset_tag,asset_tag_type,operational_status
+Laptop #1,LAPTOP-001,IT Equipment,Asset Management,IT Room,,2023-06-15,2023-06-15,65000,1,1,15000,AST-IT-00001,Barcode,Active
+Laptop #2,LAPTOP-001,IT Equipment,Asset Management,Reception,,2023-05-01,2023-05-01,72000,1,1,18000,AST-IT-00002,Barcode,Active
+Laptop #3,LAPTOP-001,IT Equipment,Asset Management,Open Office,,2023-04-10,2023-04-10,58000,1,1,12000,AST-IT-00003,Barcode,Active
+Monitor #1,MONITOR-001,IT Equipment,Asset Management,IT Room,,2023-08-20,2023-08-20,18000,1,1,4000,AST-IT-00004,Barcode,Active
+Monitor #2,MONITOR-001,IT Equipment,Asset Management,Conference Room,,2023-07-12,2023-07-12,15000,1,1,3000,AST-IT-00005,Barcode,Under Maintenance
+Monitor #3,MONITOR-001,IT Equipment,Asset Management,Open Office,,2023-09-05,2023-09-05,22000,1,1,5000,AST-IT-00006,Barcode,Active
+Monitor #4,MONITOR-001,IT Equipment,Asset Management,Reception,,2023-10-01,2023-10-01,16000,1,1,3500,AST-IT-00007,Barcode,Active
+Office Desk #1,DESK-001,Office Furniture,Asset Management,Open Office,,2022-11-01,2022-11-01,12000,1,1,2000,AST-FN-00001,Barcode,Active
+Office Desk #2,DESK-001,Office Furniture,Asset Management,Conference Room,,2022-10-15,2022-10-15,14000,1,1,2500,AST-FN-00002,Barcode,Active
+Office Desk #3,DESK-001,Office Furniture,Asset Management,Reception,,2022-09-20,2022-09-20,11000,1,1,1800,AST-FN-00003,Barcode,Active
+Office Chair #1,CHAIR-001,Office Furniture,Asset Management,Open Office,,2022-08-05,2022-08-05,8000,1,1,1500,AST-FN-00004,Barcode,Active
+Office Chair #2,CHAIR-001,Office Furniture,Asset Management,IT Room,,2022-07-18,2022-07-18,9500,1,1,1800,AST-FN-00005,Barcode,Active
+Office Chair #3,CHAIR-001,Office Furniture,Asset Management,Conference Room,,2022-06-25,2022-06-25,7500,1,1,1200,AST-FN-00006,Barcode,Under Maintenance
+Office Chair #4,CHAIR-001,Office Furniture,Asset Management,Reception,,2022-05-30,2022-05-30,9000,1,1,1600,AST-FN-00007,Barcode,Active
+Company Vehicle #1,VEHICLE-001,Vehicles,Asset Management,Head Office,,2021-03-01,2021-03-01,850000,1,1,200000,AST-VH-00001,Barcode,Active
+Company Vehicle #2,VEHICLE-001,Vehicles,Asset Management,Head Office,,2020-11-15,2020-11-15,920000,1,1,220000,AST-VH-00002,Barcode,Active
+Laptop #4,LAPTOP-001,IT Equipment,Asset Management,Conference Room,,2023-03-22,2023-03-22,68000,1,1,14000,AST-IT-00008,Barcode,Active
+Monitor #5,MONITOR-001,IT Equipment,Asset Management,IT Room,,2023-02-14,2023-02-14,19000,1,1,4200,AST-IT-00009,Barcode,Active

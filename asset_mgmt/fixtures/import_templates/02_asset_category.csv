@@ -1,0 +1,4 @@
+asset_category_name,fixed_asset_account,accumulated_depreciation_account,depreciation_expense_account,depreciation_method,total_number_of_depreciations,frequency_of_depreciation
+IT Equipment,Electronic Equipments - AM,Accumulated Depreciations - AM,Depreciation - AM,Straight Line,36,1
+Office Furniture,Furnitures and Fixtures - AM,Accumulated Depreciations - AM,Depreciation - AM,Straight Line,60,1
+Vehicles,Capital Equipments - AM,Accumulated Depreciations - AM,Depreciation - AM,Straight Line,60,1

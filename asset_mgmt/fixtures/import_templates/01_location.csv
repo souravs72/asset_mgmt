@@ -1,0 +1,8 @@
+location_name,parent_location,is_group
+Head Office,,1
+Floor 1,Head Office,1
+Floor 2,Head Office,1
+Reception,Floor 1,0
+IT Room,Floor 1,0
+Conference Room,Floor 2,0
+Open Office,Floor 2,0

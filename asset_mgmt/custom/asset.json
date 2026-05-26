@@ -1,0 +1,45 @@
+{
+ "custom_fields": [
+  {
+   "dt": "Asset",
+   "fieldname": "asset_tagging_section",
+   "fieldtype": "Section Break",
+   "insert_after": "status",
+   "label": "Asset Tagging"
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "asset_tag",
+   "fieldtype": "Data",
+   "insert_after": "asset_tagging_section",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Asset Tag",
+   "description": "Barcode / RFID / QR code",
+   "unique": 1
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "asset_tag_type",
+   "fieldtype": "Select",
+   "insert_after": "asset_tag",
+   "label": "Tag Type",
+   "options": "Barcode\nRFID\nQR"
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "operational_status",
+   "fieldtype": "Select",
+   "insert_after": "asset_tag_type",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Operational Status",
+   "options": "Active\nUnder Maintenance\nRetired\nLost",
+   "default": "Active"
+  }
+ ],
+ "property_setters": [],
+ "custom_perms": [],
+ "doctype": "Asset",
+ "sync_on_migrate": 1
+}

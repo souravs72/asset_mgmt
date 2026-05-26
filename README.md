@@ -1,41 +1,44 @@
-### Asset Mgmt
+# Asset Mgmt
 
-ERPNext asset management customizations
+ERPNext fixed asset management customizations for AscraTech clients.
 
-### Installation
+## Features
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+- Custom Asset fields: `asset_tag`, `asset_tag_type`, `operational_status`
+- Configurable setup via **Asset Mgmt Settings** (Single DocType)
+- Optional demo company, masters, and 18 sample assets on install
+- Automatic site finalization (skips setup wizard redirect loop)
+- CSV import templates under `asset_mgmt/fixtures/import_templates/`
+
+## Configuration
+
+After install, open **Asset Mgmt Settings** to change:
+
+- Company name / abbreviation / country / currency
+- Enable or disable demo setup and demo data
+- Finalize site on install (setup wizard bypass)
+
+Re-run demo setup manually:
 
 ```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app asset_mgmt
+bench --site <site> execute asset_mgmt.setup.setup_asset_management
 ```
 
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+Validate:
 
 ```bash
-cd apps/asset_mgmt
-pre-commit install
+bench --site <site> execute asset_mgmt.setup.validate_setup
 ```
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+## Install
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
+```bash
+bench get-app https://github.com/Ascra-Tech/asset_mgmt.git
+bench --site <site> install-app erpnext
+bench --site <site> install-app hrms
+bench --site <site> install-app asset_mgmt
+```
 
-### CI
+## License
 
-This app can use GitHub Actions for CI. The following workflows are configured:
-
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
-
-
-### License
-
-mit
+MIT
