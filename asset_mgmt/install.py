@@ -7,8 +7,8 @@ import os
 import frappe
 from frappe.modules.utils import sync_customizations_for_doctype
 
-from asset_mgmt.settings import ensure_default_settings
-from asset_mgmt.setup import setup_asset_management
+from asset_mgmt.settings import ensure_default_settings, get_settings
+from asset_mgmt.setup import finalize_site_setup, setup_asset_management
 
 
 def sync_custom_fields():
@@ -31,3 +31,16 @@ def after_install():
 	sync_custom_fields()
 	ensure_default_settings()
 	setup_asset_management()
+
+
+def after_migrate():
+	sync_custom_fields()
+	ensure_default_settings()
+	ensure_site_finalized()
+
+
+def ensure_site_finalized():
+	settings = get_settings()
+	if frappe.db.exists("Company", settings.company_name):
+		finalize_site_setup(settings)
+		frappe.db.commit()
