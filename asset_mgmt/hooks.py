@@ -5,6 +5,8 @@ app_description = "ERPNext asset management customizations"
 app_email = "souravsingh2609@gmail.com"
 app_license = "mit"
 
+# Apps
+# ------------------
 required_apps = ["erpnext", "hrms"]
 
 # App module folder name (must differ from app package name for sync_customizations)
@@ -84,7 +86,7 @@ required_apps = ["erpnext", "hrms"]
 
 # before_install = "asset_mgmt.install.before_install"
 after_install = "asset_mgmt.install.after_install"
-after_migrate = ["asset_mgmt.install.sync_custom_fields"]
+after_migrate = ["asset_mgmt.install.after_migrate"]
 
 # Uninstallation
 # ------------
