@@ -4,7 +4,7 @@
 import frappe
 from frappe.utils import add_months, getdate, nowdate
 
-from asset_mgmt.config import ensure_default_settings, get_settings
+from asset_mgmt.settings import ensure_default_settings, get_settings
 
 
 def setup_asset_management():
