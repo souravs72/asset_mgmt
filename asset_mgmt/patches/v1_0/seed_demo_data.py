@@ -3,7 +3,7 @@
 
 import frappe
 
-from asset_mgmt.config import get_settings
+from asset_mgmt.settings import get_settings
 from asset_mgmt.setup import setup_asset_management
 
 

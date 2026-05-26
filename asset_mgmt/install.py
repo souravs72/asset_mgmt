@@ -3,7 +3,7 @@
 
 from frappe.modules.utils import sync_customizations
 
-from asset_mgmt.config import ensure_default_settings
+from asset_mgmt.settings import ensure_default_settings
 from asset_mgmt.setup import setup_asset_management
 
 
