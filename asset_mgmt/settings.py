@@ -22,10 +22,7 @@ def get_settings():
 		}
 	)
 
-	if not frappe.db.table_exists("tabAsset Mgmt Settings"):
-		return defaults
-
-	if not frappe.db.exists("Asset Mgmt Settings", "Asset Mgmt Settings"):
+	if not frappe.db.count("Singles", {"doctype": "Asset Mgmt Settings"}):
 		return defaults
 
 	doc = frappe.get_cached_doc("Asset Mgmt Settings")
@@ -38,6 +35,7 @@ def get_settings():
 
 
 def ensure_default_settings():
-	if not frappe.db.exists("Asset Mgmt Settings", "Asset Mgmt Settings"):
-		doc = frappe.new_doc("Asset Mgmt Settings")
-		doc.insert(ignore_permissions=True)
+	if frappe.db.count("Singles", {"doctype": "Asset Mgmt Settings"}):
+		return
+
+	frappe.new_doc("Asset Mgmt Settings").insert(ignore_permissions=True)
