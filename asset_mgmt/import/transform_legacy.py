@@ -29,6 +29,8 @@ ENRICHMENT_FILE = "FORMAT - Assets Counting.xlsx"
 
 ASSET_TEMPLATE = Path(__file__).resolve().parents[1] / "fixtures" / "import_templates" / "05_asset.csv"
 
+DEFAULT_LEGACY_PURCHASE_DATE = "2000-01-01"
+
 ASSET_EXTRA_COLUMNS = [
 	"cost_center",
 	"supplier",
@@ -227,7 +229,7 @@ def transform_assets(output_dir, limit=None):
 			gross_purchase_amount = _decimal_string(row.get("TDFA_ASSET_CAPITAL_COST")) or _decimal_string(
 				extra.get("Capital Cost")
 			)
-			depreciation_start_date = _date_string(extra.get("Depreciation Start Date"))
+			depreciation_start_date = _date_string(extra.get("Depreciation Start Date")) or DEFAULT_LEGACY_PURCHASE_DATE
 
 			yield {
 				"asset_name": asset_name,

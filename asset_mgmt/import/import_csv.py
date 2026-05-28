@@ -14,7 +14,7 @@ from typing import Any
 import frappe
 
 
-COMPANY = "Asset Management"
+DEFAULT_LEGACY_PURCHASE_DATE = "2000-01-01"
 IMPORT_ORDER = [
 	("Cost Center", "cost_center.csv"),
 	("Location", "location.csv"),
@@ -100,6 +100,8 @@ def _prepare_row(doctype: str, row: dict[str, Any]) -> dict[str, Any]:
 	if doctype == "Asset":
 		payload["company"] = COMPANY
 		payload["calculate_depreciation"] = 0
+		payload.setdefault("purchase_date", DEFAULT_LEGACY_PURCHASE_DATE)
+		payload.setdefault("available_for_use_date", payload["purchase_date"])
 		payload = _resolve_asset_links(payload)
 
 	return payload
