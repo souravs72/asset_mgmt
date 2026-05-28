@@ -103,6 +103,8 @@ def _prepare_row(doctype: str, row: dict[str, Any]) -> dict[str, Any]:
 		payload["calculate_depreciation"] = 0
 		payload.setdefault("purchase_date", DEFAULT_LEGACY_PURCHASE_DATE)
 		payload.setdefault("available_for_use_date", payload["purchase_date"])
+		if not payload.get("gross_purchase_amount"):
+			payload["gross_purchase_amount"] = 0.01
 		payload = _resolve_asset_links(payload)
 
 	return payload
