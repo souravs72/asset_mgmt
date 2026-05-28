@@ -14,6 +14,7 @@ from typing import Any
 import frappe
 
 
+COMPANY = "Asset Management"
 DEFAULT_LEGACY_PURCHASE_DATE = "2000-01-01"
 IMPORT_ORDER = [
 	("Cost Center", "cost_center.csv"),
