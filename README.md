@@ -10,6 +10,14 @@ ERPNext fixed asset management customizations for AscraTech clients.
 - Automatic site finalization (skips setup wizard redirect loop)
 - CSV import templates under `asset_mgmt/fixtures/import_templates/`
 
+## Import Templates
+
+CSV templates live under `asset_mgmt/fixtures/import_templates/` and include:
+
+- `06_cost_center.csv` - Cost Center import fields and example rows.
+- `07_supplier.csv` - Supplier import fields and example rows.
+- `08_category_hierarchy.csv` - Legacy asset group/category/subcategory mapping fields and example rows.
+
 ## Configuration
 
 After install, open **Asset Mgmt Settings** to change:

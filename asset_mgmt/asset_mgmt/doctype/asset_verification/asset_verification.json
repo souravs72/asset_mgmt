@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-05-29 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "verification_date",
+  "company",
+  "location",
+ "status",
+  "column_break_1",
+  "verified_by",
+ "verify_only",
+  "update_assets_on_submit",
+  "section_break_1",
+  "items"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "AV-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Verification Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "description": "Optional site filter for verification scope",
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
+  },
+ {
+  "default": "Draft",
+  "fieldname": "status",
+  "fieldtype": "Select",
+  "in_list_view": 1,
+  "label": "Status",
+  "options": "Draft\nSubmitted",
+  "read_only": 1
+ },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "__user",
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "label": "Verified By",
+   "options": "User",
+   "reqd": 1
+  },
+ {
+  "default": "1",
+  "description": "Default mode for verification records. Assets are not updated unless Update Assets on Submit is enabled.",
+  "fieldname": "verify_only",
+  "fieldtype": "Check",
+  "label": "Verify Only",
+  "read_only": 1
+ },
+  {
+   "default": "0",
+   "description": "When enabled, scanned location and custodian are written back to Asset records on submit. Default verify-only mode leaves assets unchanged.",
+   "fieldname": "update_assets_on_submit",
+   "fieldtype": "Check",
+   "label": "Update Assets on Submit"
+  },
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break",
+   "label": "Items"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Asset Verification Item",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-05-29 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Asset Mgmt",
+ "name": "Asset Verification",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

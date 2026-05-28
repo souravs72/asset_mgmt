@@ -22,9 +22,17 @@
    "dt": "Asset",
    "fieldname": "asset_tag_type",
    "fieldtype": "Select",
-   "insert_after": "asset_tag",
+   "insert_after": "serial_number",
    "label": "Tag Type",
    "options": "Barcode\nRFID\nQR"
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "serial_number",
+   "fieldtype": "Data",
+   "insert_after": "asset_tag",
+   "in_list_view": 1,
+   "label": "Serial Number"
   },
   {
    "dt": "Asset",
@@ -36,6 +44,54 @@
    "label": "Operational Status",
    "options": "Active\nUnder Maintenance\nRetired\nLost",
    "default": "Active"
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "legacy_asset_code",
+   "fieldtype": "Data",
+   "insert_after": "operational_status",
+   "label": "Legacy Asset Code",
+   "description": "maps TDFA_ASSET_CODE",
+   "unique": 1
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "legacy_group",
+   "fieldtype": "Data",
+   "insert_after": "legacy_asset_code",
+   "label": "Legacy Group",
+   "read_only": 0
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "legacy_category",
+   "fieldtype": "Data",
+   "insert_after": "legacy_group",
+   "label": "Legacy Category"
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "legacy_subcategory",
+   "fieldtype": "Data",
+   "insert_after": "legacy_category",
+   "label": "Legacy Sub Category"
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "asset_condition",
+   "fieldtype": "Select",
+   "insert_after": "legacy_subcategory",
+   "in_standard_filter": 1,
+   "label": "Asset Condition",
+   "options": "In Service\nDamaged\nNot in Use\nSold\nScrapped"
+  },
+  {
+   "dt": "Asset",
+   "fieldname": "legacy_import_notes",
+   "fieldtype": "Small Text",
+   "insert_after": "asset_condition",
+   "label": "Legacy Import Notes",
+   "read_only": 1
   }
  ],
  "property_setters": [],
