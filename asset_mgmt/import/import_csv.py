@@ -13,8 +13,8 @@ from typing import Any
 
 import frappe
 
+from asset_mgmt.settings import get_settings
 
-COMPANY = "Asset Management"
 DEFAULT_LEGACY_PURCHASE_DATE = "2000-01-01"
 IMPORT_ORDER = [
 	("Cost Center", "cost_center.csv"),
@@ -30,6 +30,7 @@ def run(output_dir, skip_masters=False):
 	"""Import generated CSV files from output_dir into the current site."""
 	base = os.path.expanduser(output_dir)
 	order = IMPORT_ORDER[5:] if skip_masters else IMPORT_ORDER
+	company = get_settings().company_name
 
 	results = {}
 	errors = []
@@ -38,19 +39,19 @@ def run(output_dir, skip_masters=False):
 		if not os.path.exists(path):
 			errors.append(f"Missing file: {path}")
 			continue
-		results[doctype] = _import_file(doctype, path, errors)
+		results[doctype] = _import_file(doctype, path, errors, company)
 
-	return {"results": results, "errors": errors}
+	return {"company": company, "results": results, "errors": errors}
 
 
-def _import_file(doctype: str, path: str, errors: list[str]) -> dict[str, int]:
+def _import_file(doctype: str, path: str, errors: list[str], company: str) -> dict[str, int]:
 	imported = skipped = failed = 0
 	batch_size = 100 if doctype == "Asset" else 1
 
 	for row in _rows_for(path):
 		try:
-			payload = _prepare_row(doctype, row)
-			if _exists(doctype, payload):
+			payload = _prepare_row(doctype, row, company)
+			if _exists(doctype, payload, company):
 				skipped += 1
 				continue
 
@@ -78,7 +79,7 @@ def _rows_for(filename: str):
 			yield {key: (value.strip() if isinstance(value, str) else value) for key, value in row.items()}
 
 
-def _prepare_row(doctype: str, row: dict[str, Any]) -> dict[str, Any]:
+def _prepare_row(doctype: str, row: dict[str, Any], company: str) -> dict[str, Any]:
 	meta = frappe.get_meta(doctype)
 	payload = {}
 
@@ -92,14 +93,14 @@ def _prepare_row(doctype: str, row: dict[str, Any]) -> dict[str, Any]:
 		payload[fieldname] = _convert(value, field)
 
 	if doctype == "Cost Center":
-		payload.setdefault("company", COMPANY)
+		payload.setdefault("company", company)
 		payload.setdefault("is_group", 0)
 
 	if doctype == "Asset Category":
-		payload["accounts"] = _asset_category_accounts(row)
+		payload["accounts"] = _asset_category_accounts(row, company)
 
 	if doctype == "Asset":
-		payload["company"] = COMPANY
+		payload["company"] = company
 		payload["calculate_depreciation"] = 0
 		payload.setdefault("purchase_date", DEFAULT_LEGACY_PURCHASE_DATE)
 		payload.setdefault("available_for_use_date", payload["purchase_date"])
@@ -110,7 +111,7 @@ def _prepare_row(doctype: str, row: dict[str, Any]) -> dict[str, Any]:
 	return payload
 
 
-def _asset_category_accounts(row: dict[str, Any]) -> list[dict[str, Any]]:
+def _asset_category_accounts(row: dict[str, Any], company: str) -> list[dict[str, Any]]:
 	account_fields = [
 		"fixed_asset_account",
 		"accumulated_depreciation_account",
@@ -120,14 +121,15 @@ def _asset_category_accounts(row: dict[str, Any]) -> list[dict[str, Any]]:
 	for fieldname in account_fields:
 		value = row.get(fieldname)
 		if value:
-			accounts.append({"company_name": COMPANY, fieldname: value})
+			accounts.append({"company_name": company, fieldname: value})
 	return accounts
 
 
 def _resolve_asset_links(payload: dict[str, Any]) -> dict[str, Any]:
+	abbr = get_settings().company_abbr
 	cost_center = payload.get("cost_center")
 	if cost_center and not frappe.db.exists("Cost Center", cost_center):
-		suffixed = f"{cost_center} - AM"
+		suffixed = f"{cost_center} - {abbr}"
 		if frappe.db.exists("Cost Center", suffixed):
 			payload["cost_center"] = suffixed
 
@@ -138,12 +140,13 @@ def _resolve_asset_links(payload: dict[str, Any]) -> dict[str, Any]:
 	return payload
 
 
-def _exists(doctype: str, payload: dict[str, Any]) -> bool:
+def _exists(doctype: str, payload: dict[str, Any], company: str) -> bool:
+	abbr = get_settings().company_abbr
 	if doctype == "Cost Center":
 		name = payload.get("cost_center_name")
-		if name and frappe.db.exists("Cost Center", {"cost_center_name": name, "company": COMPANY}):
+		if name and frappe.db.exists("Cost Center", {"cost_center_name": name, "company": company}):
 			return True
-		if name and frappe.db.exists("Cost Center", f"{name} - AM"):
+		if name and frappe.db.exists("Cost Center", f"{name} - {abbr}"):
 			return True
 
 	if doctype == "Location":
@@ -169,7 +172,7 @@ def _exists(doctype: str, payload: dict[str, Any]) -> bool:
 	if doctype == "Asset":
 		for fieldname in ("legacy_asset_code", "asset_tag"):
 			value = payload.get(fieldname)
-			if value and frappe.db.exists("Asset", {fieldname: value, "company": COMPANY}):
+			if value and frappe.db.exists("Asset", {fieldname: value, "company": company}):
 				return True
 
 	return False
