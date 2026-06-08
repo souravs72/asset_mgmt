@@ -21,7 +21,13 @@
   "timezone",
   "admin_section",
   "admin_full_name",
-  "admin_email"
+  "admin_email",
+  "finance_review_section",
+  "finance_review_completed",
+  "finance_review_date",
+  "finance_review_notes",
+  "zero_amount_assets_flagged",
+  "non_depreciating_assets_accepted"
  ],
  "fields": [
   {
@@ -125,6 +131,44 @@
    "fieldtype": "Data",
    "label": "Admin Email",
    "options": "Email"
+  },
+  {
+   "fieldname": "finance_review_section",
+   "fieldtype": "Section Break",
+   "label": "Finance Review"
+  },
+  {
+   "default": "0",
+   "fieldname": "finance_review_completed",
+   "fieldtype": "Check",
+   "label": "Finance Review Completed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "finance_review_date",
+   "fieldtype": "Date",
+   "label": "Finance Review Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "finance_review_notes",
+   "fieldtype": "Small Text",
+   "label": "Finance Review Notes",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "zero_amount_assets_flagged",
+   "fieldtype": "Int",
+   "label": "Zero Amount Assets Flagged",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "non_depreciating_assets_accepted",
+   "fieldtype": "Int",
+   "label": "Non-Depreciating Assets Accepted",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,

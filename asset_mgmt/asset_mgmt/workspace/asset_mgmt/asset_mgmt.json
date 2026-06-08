@@ -1,0 +1,160 @@
+{
+ "charts": [],
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Asset Tagging & Verification</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset Tag Scan\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset Verification\",\"col\":4}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset Verification Summary\",\"col\":4}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters & Settings</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Location\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset Mgmt Settings\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fixed Asset Register\",\"col\":3}}]",
+ "creation": "2026-05-31 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "assets",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Asset Mgmt",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Verification",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset Verification",
+   "link_count": 0,
+   "link_to": "Asset Verification",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Asset Verification Summary",
+   "link_count": 0,
+   "link_to": "Asset Verification Summary",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Import & Settings",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset Mgmt Settings",
+   "link_count": 0,
+   "link_to": "Asset Mgmt Settings",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Asset",
+   "link_count": 0,
+   "link_to": "Asset",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Location",
+   "link_count": 0,
+   "link_to": "Location",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-05-31 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Asset Mgmt",
+ "name": "Asset Mgmt",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Assets",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Accounts User"
+  }
+ ],
+ "sequence_id": 20,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "format": "",
+   "icon": "scan",
+   "label": "Asset Tag Scan",
+   "link_to": "asset-tag-scan",
+   "type": "Page"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "",
+   "label": "Asset Verification",
+   "link_to": "Asset Verification",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "",
+   "format": "",
+   "label": "Asset Verification Summary",
+   "link_to": "Asset Verification Summary",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "",
+   "label": "Asset",
+   "link_to": "Asset",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "",
+   "label": "Location",
+   "link_to": "Location",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "",
+   "label": "Asset Mgmt Settings",
+   "link_to": "Asset Mgmt Settings",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "doc_view": "",
+   "format": "",
+   "label": "Fixed Asset Register",
+   "link_to": "Fixed Asset Register",
+   "type": "Report"
+  }
+ ],
+ "title": "Asset Mgmt"
+}
