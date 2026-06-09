@@ -4,7 +4,7 @@
 import frappe
 from frappe.utils import add_months, getdate, nowdate
 
-from asset_mgmt.settings import ensure_default_settings, get_settings
+from asset_mgmt.settings import ensure_default_settings, get_settings, validate_demo_settings
 
 
 def setup_asset_management():
@@ -20,6 +20,7 @@ def setup_asset_management():
 			finalize_site_setup(settings)
 		return
 
+	validate_demo_settings(settings)
 	company = settings.company_name
 	if frappe.db.exists("Company", company):
 		frappe.msgprint(f"Company {company} already exists — running master/asset seed only.")
@@ -65,10 +66,12 @@ def finalize_site_setup(settings=None):
 	if not system_settings.country:
 		system_settings.update(
 			{
-				"country": "India",
-				"currency": "INR",
+				"country": frappe.db.get_value("Company", company, "country")
+				or settings.country
+				or "India",
+				"currency": global_defaults.default_currency or settings.currency or "INR",
 				"language": "en",
-				"time_zone": "Asia/Kolkata",
+				"time_zone": settings.timezone or "Asia/Kolkata",
 				"enable_scheduler": 1,
 			}
 		)
@@ -78,7 +81,7 @@ def finalize_site_setup(settings=None):
 	frappe.db.set_default("company", company)
 	frappe.db.set_default("currency", global_defaults.default_currency)
 
-	# Mark every installed app as setup-complete (stops wizard re-entry for HRMS etc.)
+	# Mark every installed app as setup-complete (stops wizard re-entry for other apps)
 	for app in frappe.get_installed_apps():
 		frappe.db.set_value("Installed Application", {"app_name": app}, "is_setup_complete", 1)
 

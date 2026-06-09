@@ -7,7 +7,7 @@ app_license = "mit"
 
 # Apps
 # ------------------
-required_apps = ["erpnext", "hrms"]
+required_apps = ["erpnext"]
 
 # App module folder name (must differ from app package name for sync_customizations)
 # See asset_mgmt/install.py sync_custom_fields for explicit custom field sync.
@@ -45,7 +45,7 @@ required_apps = ["erpnext", "hrms"]
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Asset Verification": "public/js/asset_verification.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}

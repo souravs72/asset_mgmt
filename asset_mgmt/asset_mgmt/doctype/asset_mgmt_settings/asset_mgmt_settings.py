@@ -3,6 +3,10 @@
 
 from frappe.model.document import Document
 
+from asset_mgmt.settings import validate_demo_settings
+
 
 class AssetMgmtSettings(Document):
-	pass
+	def validate(self):
+		if self.enable_demo_setup:
+			validate_demo_settings(self)

@@ -42,8 +42,12 @@ class AssetVerification(Document):
 				row.verification_result = "Not Found"
 				continue
 
-			location_match = (row.scanned_location or "") == (row.expected_location or "")
-			custodian_match = (row.scanned_custodian or "") == (row.expected_custodian or "")
+			if not row.scanned_location:
+				row.verification_result = ""
+				continue
+
+			location_match = _same_link_value(row.scanned_location, row.expected_location)
+			custodian_match = _same_link_value(row.scanned_custodian, row.expected_custodian)
 
 			if not location_match:
 				row.verification_result = "Location Mismatch"
@@ -68,5 +72,14 @@ class AssetVerification(Document):
 			if row.scanned_custodian and row.scanned_custodian != (asset.custodian or ""):
 				updates["custodian"] = row.scanned_custodian
 
+			if row.operational_status:
+				current_status = frappe.db.get_value("Asset", row.asset, "operational_status")
+				if row.operational_status != (current_status or ""):
+					updates["operational_status"] = row.operational_status
+
 			if updates:
 				frappe.db.set_value("Asset", row.asset, updates, update_modified=True)
+
+
+def _same_link_value(left, right) -> bool:
+	return (left or "").strip().casefold() == (right or "").strip().casefold()

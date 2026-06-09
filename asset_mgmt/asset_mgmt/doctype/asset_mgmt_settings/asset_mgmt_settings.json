@@ -21,7 +21,13 @@
   "timezone",
   "admin_section",
   "admin_full_name",
-  "admin_email"
+  "admin_email",
+  "finance_review_section",
+  "finance_review_completed",
+  "finance_review_date",
+  "finance_review_notes",
+  "zero_amount_assets_flagged",
+  "non_depreciating_assets_accepted"
  ],
  "fields": [
   {
@@ -30,14 +36,14 @@
    "label": "Setup"
   },
   {
-   "default": "1",
+   "default": "0",
    "description": "Run company, masters, and demo asset setup on install/migrate patch",
    "fieldname": "enable_demo_setup",
    "fieldtype": "Check",
    "label": "Enable Demo Setup"
   },
   {
-   "default": "1",
+   "default": "0",
    "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "load_demo_data",
    "fieldtype": "Check",
@@ -48,32 +54,33 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "finalize_site_on_install",
    "fieldtype": "Check",
    "label": "Finalize Site (Skip Setup Wizard)"
   },
   {
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "company_section",
    "fieldtype": "Section Break",
    "label": "Company"
   },
   {
-   "default": "Asset Management",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "company_name",
    "fieldtype": "Data",
    "label": "Company Name",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.enable_demo_setup"
   },
   {
-   "default": "AM",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "company_abbr",
    "fieldtype": "Data",
    "label": "Company Abbreviation",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.enable_demo_setup"
   },
   {
-   "default": "Asset Management",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "company_tagline",
    "fieldtype": "Data",
    "label": "Company Tagline"
@@ -83,48 +90,93 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "India",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "country",
    "fieldtype": "Link",
    "label": "Country",
+   "mandatory_depends_on": "eval:doc.enable_demo_setup",
    "options": "Country"
   },
   {
-   "default": "INR",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",
+   "mandatory_depends_on": "eval:doc.enable_demo_setup",
    "options": "Currency"
   },
   {
-   "default": "India - Chart of Accounts",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "chart_of_accounts",
    "fieldtype": "Data",
-   "label": "Chart of Accounts Template"
+   "label": "Chart of Accounts Template",
+   "mandatory_depends_on": "eval:doc.enable_demo_setup"
   },
   {
-   "default": "Asia/Kolkata",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "timezone",
    "fieldtype": "Data",
-   "label": "Timezone"
+   "label": "Timezone",
+   "mandatory_depends_on": "eval:doc.enable_demo_setup"
   },
   {
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "admin_section",
    "fieldtype": "Section Break",
    "label": "Admin User"
   },
   {
-   "default": "Sourav Singh",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "admin_full_name",
    "fieldtype": "Data",
-   "label": "Admin Full Name"
+   "label": "Admin Full Name",
+   "mandatory_depends_on": "eval:doc.enable_demo_setup"
   },
   {
-   "default": "souravsingh2609@gmail.com",
+   "depends_on": "eval:doc.enable_demo_setup",
    "fieldname": "admin_email",
    "fieldtype": "Data",
    "label": "Admin Email",
+   "mandatory_depends_on": "eval:doc.enable_demo_setup",
    "options": "Email"
+  },
+  {
+   "fieldname": "finance_review_section",
+   "fieldtype": "Section Break",
+   "label": "Finance Review"
+  },
+  {
+   "default": "0",
+   "fieldname": "finance_review_completed",
+   "fieldtype": "Check",
+   "label": "Finance Review Completed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "finance_review_date",
+   "fieldtype": "Date",
+   "label": "Finance Review Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "finance_review_notes",
+   "fieldtype": "Small Text",
+   "label": "Finance Review Notes",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "zero_amount_assets_flagged",
+   "fieldtype": "Int",
+   "label": "Zero Amount Assets Flagged",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "non_depreciating_assets_accepted",
+   "fieldtype": "Int",
+   "label": "Non-Depreciating Assets Accepted",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,

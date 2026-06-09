@@ -41,6 +41,8 @@ def after_migrate():
 
 def ensure_site_finalized():
 	settings = get_settings()
-	if frappe.db.exists("Company", settings.company_name):
+	if not settings.finalize_site_on_install:
+		return
+	if settings.company_name and frappe.db.exists("Company", settings.company_name):
 		finalize_site_setup(settings)
 		frappe.db.commit()

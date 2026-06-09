@@ -13,7 +13,7 @@ from typing import Any
 
 import frappe
 
-from asset_mgmt.settings import get_settings
+from asset_mgmt.settings import get_company, get_settings
 
 DEFAULT_LEGACY_PURCHASE_DATE = "2000-01-01"
 IMPORT_ORDER = [
@@ -30,7 +30,7 @@ def run(output_dir, skip_masters=False):
 	"""Import generated CSV files from output_dir into the current site."""
 	base = os.path.expanduser(output_dir)
 	order = IMPORT_ORDER[5:] if skip_masters else IMPORT_ORDER
-	company = get_settings().company_name
+	company = get_company()
 
 	results = {}
 	errors = []
