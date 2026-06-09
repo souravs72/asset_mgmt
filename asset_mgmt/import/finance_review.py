@@ -8,7 +8,7 @@ from pathlib import Path
 import frappe
 from frappe.utils import nowdate, today
 
-from asset_mgmt.settings import get_settings
+from asset_mgmt.settings import get_company, get_settings
 
 DEFAULT_SOURCE_DIR = Path("/home/ascra/Downloads/asset-drive")
 ASSET_FILE = "Asset_14052026.xlsx"
@@ -29,7 +29,7 @@ def run_pending_items():
 
 def run(source_dir=None, fix_zero_amounts=1):
 	"""Generate finance audit and optionally fix zero-amount assets from source."""
-	company = get_settings().company_name
+	company = get_company()
 	fixed = fix_zero_amount_assets(source_dir) if fix_zero_amounts else {"updated": 0}
 
 	audit = {
@@ -72,7 +72,7 @@ def run(source_dir=None, fix_zero_amounts=1):
 
 def flag_zero_amount_assets():
 	"""Flag assets with zero capital cost in source for manual finance review."""
-	company = get_settings().company_name
+	company = get_company()
 	source_zero_codes = _zero_amount_codes_from_source()
 	flagged = 0
 
@@ -112,7 +112,7 @@ def flag_zero_amount_assets():
 
 def complete_finance_signoff():
 	"""Record finance acceptance for depreciating and non-depreciating legacy assets."""
-	company = get_settings().company_name
+	company = get_company()
 	depreciating = frappe.db.count(
 		"Asset", {"company": company, "legacy_asset_code": ["!=", ""], "calculate_depreciation": 1}
 	)
@@ -158,7 +158,7 @@ def ensure_asset_mgmt_workspace():
 
 def fix_zero_amount_assets(source_dir=None):
 	"""Update assets still at 0.01 using capital cost from the legacy XLSX export."""
-	company = get_settings().company_name
+	company = get_company()
 	transform_legacy = importlib.import_module("asset_mgmt.import.transform_legacy")
 	source_dir = Path(os.environ.get(transform_legacy.SOURCE_DIR_ENV, source_dir or DEFAULT_SOURCE_DIR))
 	path = source_dir / ASSET_FILE

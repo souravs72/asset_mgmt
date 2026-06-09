@@ -7,7 +7,7 @@ app_license = "mit"
 
 # Apps
 # ------------------
-required_apps = ["erpnext", "hrms"]
+required_apps = ["erpnext"]
 
 # App module folder name (must differ from app package name for sync_customizations)
 # See asset_mgmt/install.py sync_custom_fields for explicit custom field sync.

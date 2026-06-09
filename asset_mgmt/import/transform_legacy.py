@@ -46,8 +46,8 @@ ASSET_EXTRA_COLUMNS = [
 
 @dataclass(frozen=True)
 class CompanySettings:
-	company_name: str = "Asset Management"
-	company_abbr: str = "AM"
+	company_name: str = ""
+	company_abbr: str = ""
 
 
 def run(output_dir, limit=None):
@@ -283,8 +283,8 @@ def _get_company_settings() -> CompanySettings:
 
 		settings = get_settings()
 		return CompanySettings(
-			company_name=_setting(settings, "company_name", "Asset Management"),
-			company_abbr=_setting(settings, "company_abbr", "AM"),
+			company_name=_setting(settings, "company_name", ""),
+			company_abbr=_setting(settings, "company_abbr", ""),
 		)
 	except Exception:
 		return CompanySettings()

@@ -10,6 +10,8 @@ from asset_mgmt.setup import setup_asset_management
 
 def execute():
 	settings = get_settings()
+	if not settings.enable_demo_setup:
+		return
 	if frappe.db.exists("Company", settings.company_name):
 		return
 

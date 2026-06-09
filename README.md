@@ -91,7 +91,7 @@ Source: `ERPNext_Asset_Management_Project_Tracker.xlsx`
 
 | Task ID | Title | Tracker status | Actual status in `asset_mgmt` |
 |---|---|---|---|
-| 1.1 | Env & Roles | To Do | ✅ ERPNext + HRMS + asset_mgmt installed; roles on verification |
+| 1.1 | Env & Roles | To Do | ✅ ERPNext + asset_mgmt installed; roles on verification |
 | 2.1 | Data Template | To Do | ✅ CSV templates in `fixtures/import_templates/` |
 | 2.2 | Data Upload | To Do | ✅ 11,347 assets imported via pipeline (not Data Import Tool UI) |
 | 3.1 | Custom Fields (barcode/RFID) | To Do | ✅ `asset_tag`, `asset_tag_type`, `serial_number` on Asset |
@@ -557,7 +557,6 @@ bench --site asset-mgmt.localhost execute asset_mgmt.import.finance_review.run_p
 ```bash
 bench get-app https://github.com/Ascra-Tech/asset_mgmt.git
 bench --site <site> install-app erpnext
-bench --site <site> install-app hrms
 bench --site <site> install-app asset_mgmt
 ```
 

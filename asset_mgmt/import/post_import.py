@@ -18,7 +18,7 @@ from typing import Any
 import frappe
 from frappe.utils import getdate, nowdate, today
 
-from asset_mgmt.settings import get_settings
+from asset_mgmt.settings import get_company, get_settings
 
 DEFAULT_CSV_DIR = "/tmp/asset-import-check"
 LEGACY_IN_SERVICE_DATE = "2019-04-01"
@@ -56,7 +56,7 @@ def validate_sync(csv_dir=DEFAULT_CSV_DIR):
 	SUPPLIER_FILE = transform_legacy.SUPPLIER_FILE
 	_read_rows = transform_legacy._read_rows
 
-	company = get_settings().company_name
+	company = get_company()
 	csv_path = Path(os.path.expanduser(csv_dir))
 
 	def csv_count(name: str) -> int:
@@ -102,7 +102,7 @@ def validate_sync(csv_dir=DEFAULT_CSV_DIR):
 
 def fix_data_quality(csv_dir=DEFAULT_CSV_DIR):
 	"""Update legacy Asset records from generated CSV (amounts, suppliers, serials, notes)."""
-	company = get_settings().company_name
+	company = get_company()
 	rows = _load_asset_csv(csv_dir)
 	updated = skipped = failed = 0
 	errors: list[str] = []
@@ -143,7 +143,7 @@ def fix_data_quality(csv_dir=DEFAULT_CSV_DIR):
 
 def fix_legacy_dates():
 	"""Move placeholder legacy dates into the first active fiscal year."""
-	company = get_settings().company_name
+	company = get_company()
 	cutoff = getdate(LEGACY_IN_SERVICE_DATE)
 	assets = frappe.get_all(
 		"Asset",
@@ -186,7 +186,7 @@ def fix_legacy_dates():
 
 def fix_cost_centers():
 	"""Resolve legacy asset cost center links to suffixed Cost Center names."""
-	company = get_settings().company_name
+	company = get_company()
 	assets = frappe.get_all(
 		"Asset",
 		filters={"company": company, "legacy_asset_code": ["!=", ""]},
@@ -211,7 +211,7 @@ def fix_cost_centers():
 
 def apply_finance_policy(csv_dir=DEFAULT_CSV_DIR):
 	"""Enable depreciation for legacy assets where source data includes depreciation %."""
-	company = get_settings().company_name
+	company = get_company()
 	rows = _load_asset_csv(csv_dir)
 	enabled = skipped = failed = 0
 	errors: list[str] = []
@@ -291,7 +291,7 @@ def apply_finance_policy(csv_dir=DEFAULT_CSV_DIR):
 
 def submit_legacy_assets(batch_size=200):
 	"""Submit draft legacy assets in batches."""
-	company = get_settings().company_name
+	company = get_company()
 	names = frappe.get_all(
 		"Asset",
 		filters={"company": company, "legacy_asset_code": ["!=", ""], "docstatus": 0},
@@ -334,7 +334,7 @@ def submit_legacy_assets(batch_size=200):
 
 def create_location_verifications(submit_verifications=False):
 	"""Create baseline Asset Verification records grouped by location."""
-	company = get_settings().company_name
+	company = get_company()
 	locations = frappe.db.sql(
 		"""
 		SELECT location, COUNT(*) AS asset_count
@@ -483,7 +483,7 @@ def _build_asset_updates(row: dict[str, str]) -> dict[str, Any]:
 		updates["opening_accumulated_depreciation"] = float(opening)
 
 	if updates.get("cost_center"):
-		updates["cost_center"] = _resolve_cost_center(updates["cost_center"], get_settings().company_name)
+		updates["cost_center"] = _resolve_cost_center(updates["cost_center"], get_company())
 
 	return updates
 
